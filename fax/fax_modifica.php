@@ -17,9 +17,9 @@
     
     <TD ALIGN="LEFT">
      <FONT style="color:white">
-      Fax -> Cartelle -> Nuova cartella:
+      Fax -> Nuovi -> Archivia:
       &nbsp;
-      <A HREF="fax_cartella_index.php">
+      <A HREF="fax_index.php">
       Back</A>
      </FONT>
     </TD>
@@ -34,34 +34,41 @@
 
 <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" WIDTH="100%">
 <tr>
-
 <td valign="top">
-<form action="fax_cartella_nuova.php" method="post">
-<br>
-Inserire la descrizione della nuova cartella.<br>
-<br>
-<input type="text" name="descrizione" maxlenght="50" size="30" align="absmiddle">
-<br>
-<br>
-<br>
-<input type="submit" value="inserisci">
-</form>
-</td>
-
-<td>
 
 <?php
 // connessione al database
 $conn=db_connect();
 
-if (strlen($descrizione) >2 )
- {
- $descrizione = strtolower($descrizione);
- $query="insert into cartelle (\"descrizione\") values ('$descrizione')";
- $result = db_execute($conn,$query);
- };
+$query="SELECT *,oid FROM fax where oid=$oid";
+$result = db_execute($conn,$query);
+$elemento = pg_fetch_array($result,0);
 
-$query="SELECT * FROM cartelle order by numero";
+print "<br>";
+print "Data: " . $elemento['data_arrivo'] . "<br>";
+print "Ora: " . $elemento['ora_arrivo'] . "<br>";
+print "Da: " . $elemento['remote_id'] . "<br>";
+print "Pagina: " . $elemento['pagina'] . "<br>";
+print "Pagine Totali: " . $elemento['pagine_totali'] . "<br>";
+print "Note: " . $elemento['note'] . "<br>";
+print "<center>";
+print '<br><a href="' . $elemento['url'] . '"> [Visualizza Fax] </a>';
+print "</center><br><br>";
+
+print '<form action="fax_salva_commit.php" method="post">';
+print "<br>Digitare il codice della cartella dove salvare il fax.<br>";
+print "<br>";
+print '<input type="text" name="cartella" maxlenght="50" size="10" align="absmiddle">';
+print '<input type="hidden" name="oid" value="' . $oid . '">';
+print "<br><br><br>";
+print '<input type="submit" value="salva">';
+print "</form>";
+print "</td>";
+
+// parte dx cartelle
+
+print '<td valign="top">';
+$query="SELECT * FROM cartelle order by descrizione";
 $result = db_execute($conn,$query);
 
 // conto il numero di linee trovate (count ritorna sempre qualcosa).

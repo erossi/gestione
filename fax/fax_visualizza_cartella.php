@@ -17,9 +17,9 @@
     
     <TD ALIGN="LEFT">
      <FONT style="color:white">
-      Fax -> Cartelle -> Nuova cartella:
+      Fax -> Visualizza - > Per cartella:
       &nbsp;
-      <A HREF="fax_cartella_index.php">
+      <A HREF="fax_visualizza_index.php">
       Back</A>
      </FONT>
     </TD>
@@ -36,15 +36,15 @@
 <tr>
 
 <td valign="top">
-<form action="fax_cartella_nuova.php" method="post">
+<form action="fax_visualizza_cartella_commit.php" method="post">
 <br>
-Inserire la descrizione della nuova cartella.<br>
+Inserire la descrizione della cartella.<br>
 <br>
-<input type="text" name="descrizione" maxlenght="50" size="30" align="absmiddle">
+<input type="text" name="cartella" maxlenght="50" size="30" align="absmiddle">
 <br>
 <br>
 <br>
-<input type="submit" value="inserisci">
+<input type="submit" value="trova">
 </form>
 </td>
 
@@ -54,14 +54,7 @@ Inserire la descrizione della nuova cartella.<br>
 // connessione al database
 $conn=db_connect();
 
-if (strlen($descrizione) >2 )
- {
- $descrizione = strtolower($descrizione);
- $query="insert into cartelle (\"descrizione\") values ('$descrizione')";
- $result = db_execute($conn,$query);
- };
-
-$query="SELECT * FROM cartelle order by numero";
+$query="SELECT * FROM cartelle order by descrizione";
 $result = db_execute($conn,$query);
 
 // conto il numero di linee trovate (count ritorna sempre qualcosa).

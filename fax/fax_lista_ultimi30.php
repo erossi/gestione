@@ -3,12 +3,12 @@
   { include "auth.php"; }
   
  $utility = $_SESSION['d_function_dir'] . "/f_utility.php";
- $f_fax_lista_cartelle = $_SESSION['d_function_dir'] . "/f_fax_lista_cartelle.php";
+ $f_fax_lista = $_SESSION['d_function_dir'] . "/f_fax_lista.php";
  
  if (file_exists("$utility"))
   { include "$utility"; }
- if (file_exists("$f_fax_lista_cartelle"))
-  { include "$f_fax_lista_cartelle"; }
+ if (file_exists("$f_fax_lista"))
+  { include "$f_fax_lista"; }
 ?>
 
 <body>
@@ -17,9 +17,9 @@
     
     <TD ALIGN="LEFT">
      <FONT style="color:white">
-      Fax -> Cartelle -> Nuova cartella:
+      Fax -> Ultimi 30:
       &nbsp;
-      <A HREF="fax_cartella_index.php">
+      <A HREF="fax_index.php">
       Back</A>
      </FONT>
     </TD>
@@ -33,37 +33,25 @@
   </TABLE>
 
 <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" WIDTH="100%">
-<tr>
-
-<td valign="top">
-<form action="fax_cartella_nuova.php" method="post">
-<br>
-Inserire la descrizione della nuova cartella.<br>
-<br>
-<input type="text" name="descrizione" maxlenght="50" size="30" align="absmiddle">
-<br>
-<br>
-<br>
-<input type="submit" value="inserisci">
-</form>
-</td>
-
-<td>
+<tr><td>
 
 <?php
 // connessione al database
 $conn=db_connect();
 
-if (strlen($descrizione) >2 )
- {
- $descrizione = strtolower($descrizione);
- $query="insert into cartelle (\"descrizione\") values ('$descrizione')";
- $result = db_execute($conn,$query);
- };
+//necessaria per la chiamata alla lista_clienti
+$page_link="fax_modifica.php";
 
-$query="SELECT * FROM cartelle order by numero";
+// connessione al database
+$conn=db_connect();
+
+$query="SELECT oid,to_char(data_arrivo,'DD Mon YYYY') as data,
+ to_char(ora_arrivo,'HH24:MI:SS') as ora,
+ remote_id,pagina,pagine_totali,url
+ FROM fax where cartella=1 order by data_arrivo DESC,ora_arrivo DESC
+ LIMIT 30";
 $result = db_execute($conn,$query);
-
+    
 // conto il numero di linee trovate (count ritorna sempre qualcosa).
 $num_rows=pg_numrows($result);
 
@@ -71,7 +59,7 @@ if ($DEBUG) { print 'Total lines found: ' . $num_rows . '<br>'; };
 
 print '<img src="../icone/freccia.png" width="15" height="15" border="0"';
 print ' vspace="2" align="absmiddle">';
-print "Cartelle trovate: $num_rows <br>";
+print 'Fax trovati: ' . $num_rows .'<br>';
 
 if ($num_rows > 0)
  {
@@ -80,6 +68,7 @@ if ($num_rows > 0)
 
 // chiudo la connessione
 db_close($conn);
+
 ?>
 
 </td>

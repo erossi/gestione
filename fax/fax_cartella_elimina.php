@@ -17,7 +17,7 @@
     
     <TD ALIGN="LEFT">
      <FONT style="color:white">
-      Fax -> Cartelle -> Nuova cartella:
+      Fax -> Cartelle -> Elimina cartella:
       &nbsp;
       <A HREF="fax_cartella_index.php">
       Back</A>
@@ -36,15 +36,15 @@
 <tr>
 
 <td valign="top">
-<form action="fax_cartella_nuova.php" method="post">
+<form action="fax_cartella_elimina.php" method="post">
 <br>
-Inserire la descrizione della nuova cartella.<br>
+Inserire la descrizione della cartella da eliminare.<br>
 <br>
 <input type="text" name="descrizione" maxlenght="50" size="30" align="absmiddle">
 <br>
 <br>
 <br>
-<input type="submit" value="inserisci">
+<input type="submit" value="elimina">
 </form>
 </td>
 
@@ -57,11 +57,11 @@ $conn=db_connect();
 if (strlen($descrizione) >2 )
  {
  $descrizione = strtolower($descrizione);
- $query="insert into cartelle (\"descrizione\") values ('$descrizione')";
+ $query="delete from cartelle where descrizione='$descrizione' and quantita = 0";
  $result = db_execute($conn,$query);
  };
 
-$query="SELECT * FROM cartelle order by numero";
+$query="SELECT * FROM cartelle order by descrizione";
 $result = db_execute($conn,$query);
 
 // conto il numero di linee trovate (count ritorna sempre qualcosa).
