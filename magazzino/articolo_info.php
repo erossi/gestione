@@ -60,7 +60,7 @@
     print '    </tr>';
     print '    <tr>';
     print '        <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2" color="white">Prezzo di vendita :</font></td>';
-    print '        <td><font face="arial,helvetica,sans-serif" size="2">' . $arr['prezzo_ven'] . '</font></td>';
+    print '        <td><font face="arial,helvetica,sans-serif" size="2">' . $arr['prezzo_ven1'] . '</font></td>';
     print '    </tr>';
     print '    <tr>';
     print '        <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2" color="white">Prezzo di acquisto :</font></td>';

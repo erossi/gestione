@@ -21,8 +21,8 @@
     </FONT></TD>
     <TD ALIGN="RIGHT" VALIGN="TOP">
 <FONT FACE="Arial,Helvetica,Sans-serif" SIZE="2" STYLE="color: White">
-Powered by <A HREF="http://www.tecnobrain.com" target="_top">TecnoBrain
-<IMG SRC="icone/logo_tecnobrain.gif" WIDTH="16" HEIGHT="18" BORDER="0" ALT="Powered by TecnoBrain" ALIGN="ABSMIDDLE">
+Created by <A HREF="http://www.tecnobrain.com" target="_top">TecnoBrain
+<IMG SRC="icone/logo_tecnobrain.gif" WIDTH="16" HEIGHT="18" BORDER="0" ALT="Created by TecnoBrain" ALIGN="ABSMIDDLE">
 </A>&nbsp;</FONT></TD>
 </TR>
 </TABLE>

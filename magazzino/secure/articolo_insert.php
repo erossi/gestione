@@ -36,10 +36,10 @@
             <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2" color="white">Prezzo di Acquisto</font></td>
             <td align="left"  valign="middle"><input type="text" name="prezzo_acq" maxlenght="15" size="15" align="absmiddle"></td>
             <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2" color="white">Prezzo di Vendita</font></td>
-            <td align="left"  valign="middle"><input type="text" name="prezzo_ven" maxlenght="15" size="15" align="absmiddle"></td>
+            <td align="left"  valign="middle"><input type="text" name="prezzo_ven1" maxlenght="15" size="15" align="absmiddle"></td>
         </tr>
         <tr>
-            <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2" color="white">Data di acquisto</font></td>
+            <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2" color="white">Data di inserimento</font></td>
             <td align="left"  valign="middle"><input type="text" name="data_ultimo_acq" size="20" align="absmiddle"></td>
         </tr>
 

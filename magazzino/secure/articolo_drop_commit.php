@@ -29,7 +29,7 @@ if ($DEBUG)
  print '$quantita	: ' . $quantita . '<BR>';
  print '$quantita_scarico: ' . $quantita_scarico . '<BR>';
  print '$prezzo_acq	: ' . $prezzo_acq . '<BR>';
- print '$prezzo_ven	: ' . $prezzo_ven . '<BR>';
+ print '$prezzo_ven	: ' . $prezzo_ven1 . '<BR>';
  print '$data: ' . $data_vendita . '<BR>';
 
  }
@@ -41,7 +41,7 @@ if ($DEBUG)
     print '    <font face="arial,helvetica,sans-serif" size="2">';
    
     $errori=0;
-    if ($codice_art == '' || $quantita_scarico == '' || $prezzo_ven == '')
+    if ($codice_art == '' || $quantita_scarico == '' || $prezzo_ven1 == '')
      {
      print '<b>Attenzione:</b> 
      Dovete compilare almeno i campi codice, quantita o prezzo vendita.<br>';
@@ -110,7 +110,7 @@ if ($DEBUG)
 	'" . $note . "',
 	'scarico di magazzino',
 	" . $quantita_scarico . ",
-	'" . $prezzo_ven . "',
+	'" . $prezzo_ven1 . "',
 	'" . $data_vendita . "')";
 	
     if ($DEBUG) { print 'Insert query: <b>' . $query . '</b><br>'; };

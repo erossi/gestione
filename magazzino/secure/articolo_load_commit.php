@@ -19,10 +19,10 @@
 
 // Un po' di debugging
 
-if ($prezzo_ven == '' && $ricarico_vendita)
+if ($prezzo_ven1 == '' && $ricarico_vendita)
  {
  $temp = $prezzo_acq * $ricarico_vendita / 100;
- $prezzo_ven = bcadd($prezzo_acq,$temp,2);
+ $prezzo_ven1 = bcadd($prezzo_acq,$temp,2);
  };
 
 if ($DEBUG)
@@ -35,7 +35,7 @@ if ($DEBUG)
  print '$quantita	: ' . $quantita . '<BR>';
  print '$quantita_carico: ' . $quantita_carico . '<BR>';
  print '$prezzo_acq	: ' . $prezzo_acq . '<BR>';
- print '$prezzo_ven	: ' . $prezzo_ven . '<BR>';
+ print '$prezzo_ven1	: ' . $prezzo_ven1 . '<BR>';
  print '$data_ultimo_acq: ' . $data_ultimo_acq . '<BR>';
 
  }
@@ -100,7 +100,7 @@ if ($DEBUG)
     $query="UPDATE magazzino SET
 	    quantita=" . $quantita . ",
 	    prezzo_acq='" . $prezzo_acq . "',
-	    prezzo_ven='" . $prezzo_ven . "',
+	    prezzo_ven1='" . $prezzo_ven1 . "',
 	    data_ultimo_acq='" . $data_ultimo_acq . "'
 	    WHERE codice_art='" . $codice_art . "'";
 

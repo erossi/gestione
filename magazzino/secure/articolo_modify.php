@@ -49,7 +49,8 @@ print'<form method="post" action="articolo_modify_commit.php?oid=' . $oid . '">'
 print'<table cellspacing="1" cellpadding="3" border="0">';
     print '    <tr>';
     print '<td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2">Codice</font></td>';
-    print '<td align="left"  valign="middle"><input type="text" name="codice_art" size="10" align="absmiddle" value="' . $arr['codice_art'] . '"></td>';
+//    print '<td align="left"  valign="middle"><input type="text" name="codice_art" size="10" align="absmiddle" value="' . $arr['codice_art'] . '">
+    print '<td align="left"  valign="middle">' . $arr['codice_art'] . ' <bl>Usare cautela!!!</bl></td>';
     print '</tr>';
     print '<tr>';
     print '<td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2">Descrizione</font></td>';
@@ -65,7 +66,7 @@ print'<table cellspacing="1" cellpadding="3" border="0">';
     print '        <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2">Prezzo di Acquisto</font></td>';
     print '        <td align="left"  valign="middle"><input type="text" name="prezzo_acq" size="15" align="absmiddle" value="' . $arr['prezzo_acq'] . '"></td>';
     print '        <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2">Prezzo di Vendita</font></td>';
-    print '        <td align="left"  valign="middle"><input type="text" name="prezzo_ven" size="15" align="absmiddle" value="' . $arr['prezzo_ven'] . '"></td>';
+    print '        <td align="left"  valign="middle"><input type="text" name="prezzo_ven1" size="15" align="absmiddle" value="' . $arr['prezzo_ven1'] . '"></td>';
     print '    </tr>';
     print '    <tr>';
     print '        <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2">Data di acquisto</font></td>';

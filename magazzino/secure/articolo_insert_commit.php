@@ -17,10 +17,10 @@
 
 <?
 // Un po' di debugging
-if ($prezzo_ven == '' && $ricarico_vendita)
+if ($prezzo_ven1 == '' && $ricarico_vendita)
  {
  $temp = $prezzo_acq * $ricarico_vendita / 100;
- $prezzo_ven = bcadd($prezzo_acq,$temp,2);
+ $prezzo_ven1 = bcadd($prezzo_acq,$temp,2);
  };
  
 if ($DEBUG)
@@ -31,7 +31,7 @@ if ($DEBUG)
  print '$descrizione2	: ' . $descrizione2 . '<BR>';
  print '$quantita	: ' . $quantita . '<BR>';
  print '$prezzo_acq	: ' . $prezzo_acq . '<BR>';
- print '$prezzo_ven	: ' . $prezzo_ven . '<BR>';
+ print '$prezzo_ven1	: ' . $prezzo_ven1 . '<BR>';
  print '$data_ultimo_acq: ' . $data_ultimo_acq . '<BR>';
  print '$ricarico	: ' . $ricarico_vendita . '<BR>';
  print '$temp		: ' . $temp . '<BR>';
@@ -47,6 +47,7 @@ if ($DEBUG)
     print '    <font face="arial,helvetica,sans-serif" size="2">';
    
     $errori=0;
+    $quantita='0';
     if ($codice_art == '' || $descrizione == '' || $quantita == '')
      {
      print '<b>Attenzione:</b> 
@@ -108,14 +109,14 @@ if ($DEBUG)
     
     // inserisco l'articolo
     $query="INSERT INTO magazzino(codice_art,descrizione,descrizione2,
-	    quantita,prezzo_acq,prezzo_ven,data_ultimo_acq)
+	    quantita,prezzo_acq,prezzo_ven1,data_ultimo_acq)
 	    VALUES 
 	    ('" . $codice_art . "',
 	    '" . $descrizione . "',
 	    '" . $descrizione2 . "',
 	    " . $quantita . ",
 	    '" . $prezzo_acq . "',
-	    '" . $prezzo_ven . "',
+	    '" . $prezzo_ven1 . "',
 	    '" . $data_ultimo_acq . "')";
 	    
     if ($DEBUG) { print 'Insert query: <b>' . $query . '</b><br>'; };

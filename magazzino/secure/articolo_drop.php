@@ -69,7 +69,7 @@ print'<table cellspacing="1" cellpadding="3" border="0">';
 
     print '    <tr>';
     print '        <td align="right" valign="middle" bgcolor="#336699"><font face="arial,helvetica,sans-serif" size="2">Prezzo di Vendita</font></td>';
-    print '        <td align="left"  valign="middle"><input type="text" name="prezzo_ven" size="15" align="absmiddle" value="' . $arr['prezzo_ven'] . '"></td>';
+    print '        <td align="left"  valign="middle"><input type="text" name="prezzo_ven1" size="15" align="absmiddle" value="' . $arr['prezzo_ven1'] . '"></td>';
     print '    </tr>';
 
     print '    <tr>';

@@ -62,7 +62,7 @@
         print '<tr>';
         print '<td align="right" valign="middle" width="70%" bgcolor="white" colspan="2">';
         print '    <font face="arial,helvetica,sans-serif" size="2" color="black">';
-        print $title . '&nbsp;-&nbsp;Powered by Tecnobrain';
+        print $title . '&nbsp;-&nbsp;Creato da Tecno Brain';
         print '    </font>';
         print '    </td>';
         print '</tr>';

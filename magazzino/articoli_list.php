@@ -20,7 +20,20 @@
     if ($DEBUG) { 
         print 'title(info) is: ' . $title . '(' . $info . ')<br>';
     };
-    
+
+    // toglie tutti gli slashes
+    $where=stripslashes($where);
+    // codifica la where clause per poterla trasferire via URL
+    $where_encoded=urlencode($where);
+    // if there is something we add "where " at the where clause
+    if ($where) { $where_clause=" WHERE " . $where; }
+    // order by...
+    switch ($order) {
+        case "c": $order_clause=" ORDER BY codice_art"; break;
+        case "d":
+	default: $order_clause=" ORDER BY descrizione,descrizione2";
+        }
+
     // connessione al database
     $conn=db_connect($db_host,$db_port,$db_name,$db_user);    
 
@@ -47,7 +60,10 @@
         for ($count=0; $count<$num_rows; $count+=$max_table_rows) {
             $temp_to=$count+$max_table_rows-1;
             if ($temp_to>$num_rows) { $temp_to=$num_rows-1; };
-            print '<a href="articoli_list.php?from=' . $count . '&to=' . $temp_to . '&where=' . $where_encoded . '">' . $count . '</a> &nbsp;';
+            print '<a href="articoli_list.php?from=' . $count .
+	     '&to=' . $temp_to .
+	     '&order=' . $order .
+	     '&where=' . $where_encoded . '">' . $count . '</a> &nbsp;';
         }
         print ': Totale ' . $num_rows;
         print '</font></td></tr></table>';
@@ -77,7 +93,7 @@
         print '</div>';
 
         // stampo il risultato
-        $query="SELECT oid,* FROM magazzino ORDER BY descrizione,descrizione2";
+        $query="SELECT oid,* FROM magazzino " . $order_clause;
         $result = db_execute($conn,$query);
         if ($DEBUG) { print 'Query: <b>' . $query . '</b><br>'; };
         if (!$result) {
@@ -87,7 +103,10 @@
        
         // conto il numero di righe
         $num_rows=pg_numrows($result);
-        if ($DEBUG) { print 'Numbers of rows in table: <b>' . $num_rows . '</b><br>'; };
+        if ($DEBUG) 
+	 { print 'Numbers of rows in table: <b>' . $num_rows . '</b><br>';
+	 print 'Query: ' . $query . '<BR>';
+	 };
     
         // imposto i limiti dei record da stampare (stampo da $from a $to).
         if ($from=='') { $from=0; };
@@ -99,8 +118,16 @@
         print '<div align="center">';
         print '<table cellspacing="1" cellpadding="3" border="0" width="90%">';
         print '<tr bgcolor="#336699">';
-        print '    <td width="5%"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Cod.</font></td>';
-        print '    <td width="55%"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Descrizione</font></td>';
+        print '<td width="5%">
+	    <font face="arial,helvetica,sans-serif" size="2" style="color:white">
+	    <a href="articoli_list.php?from=' . $from . '&to=' . $to .
+	    '&order=c&where=' . $where_encoded . '" style="color:white">
+	    Cod.</font></td>';
+        print '<td width="55%">
+	    <font face="arial,helvetica,sans-serif" size="2" style="color: white">
+	    <a href="articoli_list.php?from=' . $from . '&to=' . $to .
+	    '&order=d&where=' . $where_encoded . '" style="color:white">
+	    Descrizione</font></td>';
         print '    <td width="15%"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Prezzo</font></td>';
         print '    <td width="5%"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Qt.</font></td>';
         print '    <td width="15%" colspan="2"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Operazioni</font></td>';
@@ -151,7 +178,7 @@
             };
 	    
             print '    <font face="arial,helvetica,sans-serif" size="2">';
-            print $arr['prezzo_ven'] . '<br>';
+            print $arr['prezzo_ven1'] . '<br>';
             print '    </font>';
             print '</td>';
 	    
