@@ -32,15 +32,17 @@
 
     // Registro nei movimenti la cancellazione
 
-    $query="INSERT INTO movimenti
-        (codice_art, descrizione, tipo_movimento, quantita, prezzo, data_movimento)
-        VALUES
-        ('" . $codice_art . "',
-        '',
-        'ELIMINAZIONE ARTICOLO',
-        0,
-        '0',
-        'now')";
+//    $query="INSERT INTO movimenti
+//        (codice_art, descrizione, tipo_movimento, quantita, prezzo, data_movimento)
+//        VALUES
+//        ('" . $codice_art . "',
+//        '',
+//        'ELIMINAZIONE ARTICOLO',
+//        0,
+//        '0',
+//        'now')";
+
+    $query="DELETE FROM movimenti WHERE codice_art='" . $codice_art . "'";
 
     $result = pg_exec ($conn,$query);
 

@@ -9,8 +9,6 @@
 </head>
 <body text="black" bgcolor="white" link="#cc9966" alink="#cc9966" vlink="#cc9966">
 
-<font face="arial,helvetica,sans-serif" size="2">
-
 <? print_top($prog_name); ?>
 <? print_navigation('Magazzino','Home Page','../contents.php'); ?>
 <? print_title('Lista di Magazzino'); ?>
@@ -55,8 +53,8 @@
         print '<div align="center">';
         print '<table cellspacing="1" cellpadding="3" border="0" width="90%">';
         print '<tr bgcolor="white">';
-        print '    <td  width="5%"><font face="arial,helvetica,sans-serif" size="2">Index:</font></td>';
-        print '    <td width="95%"><font face="arial,helvetica,sans-serif" size="2">&nbsp;';
+        print '    <td  width="5%">Index:</td>';
+        print '    <td width="95%">&nbsp;';
         for ($count=0; $count<$num_rows; $count+=$max_table_rows) {
             $temp_to=$count+$max_table_rows-1;
             if ($temp_to>$num_rows) { $temp_to=$num_rows-1; };
@@ -66,32 +64,9 @@
 	     '&where=' . $where_encoded . '">' . $count . '</a> &nbsp;';
         }
         print ': Totale ' . $num_rows;
-        print '</font></td></tr></table>';
+        print '</td></tr></table>';
         print '</div>';
         
-        // legenda
-        print '<div align="center">';
-        print '<table cellspacing="1" cellpadding="3" border="0" width="90%">';        
-        print '<tr>';
-        print '<td align="left" valign="middle">';
-        print '    <font face="arial,helvetica,sans-serif" size="2">';
-        print '    &nbsp;<img src="../icone/ico_info.gif" width="17" height="15" border="0" align="absmiddle"> = Dettagli&nbsp;';
-        print '    </font>';
-        print '</td>';
-	
-        print '<td align="left" valign="middle" bgcolor="#ffc1c1">';
-        print '    <font face="arial,helvetica,sans-serif" size="2">';
-        print '    &nbsp;<img src="../icone/ico_draw.gif"    width="25" height="30" border="0" align="absmiddle"> = Scarico&nbsp;';
-        print '    &nbsp;<img src="../icone/ico_deposit.gif" width="25" height="30" border="0" align="absmiddle"> = Carico&nbsp;';
-        print '    &nbsp;<img src="../icone/ico_history.gif" width="25" height="30" border="0" align="absmiddle"> = Movimenti&nbsp;';
-        print '    &nbsp;<img src="../icone/ico_edit.gif" width="25" height="30" border="0" align="absmiddle"> = Modifica&nbsp;';
-        print '    &nbsp;<img src="../icone/ico_delete.gif" width="25" height="30" border="0" align="absmiddle"> = Cancella&nbsp;';
-        print '    </font>';
-        print '</td>';
-        print '</tr>'; 
-        print '</table>';
-        print '</div>';
-
         // stampo il risultato
         $query="SELECT oid,* FROM magazzino " . $order_clause;
         $result = db_execute($conn,$query);
@@ -116,21 +91,19 @@
         if ($DEBUG) { print 'Index: <b>from=' . $from . ', to=' . $to . '</b>'; };
 
         print '<div align="center">';
-        print '<table cellspacing="1" cellpadding="3" border="0" width="90%">';
+        print '<table cellspacing="0" cellpadding="0" border="0" width="90%">';
         print '<tr bgcolor="#336699">';
         print '<td width="5%">
-	    <font face="arial,helvetica,sans-serif" size="2" style="color:white">
 	    <a href="articoli_list.php?from=' . $from . '&to=' . $to .
 	    '&order=c&where=' . $where_encoded . '" style="color:white">
-	    Cod.</font></td>';
-        print '<td width="55%">
-	    <font face="arial,helvetica,sans-serif" size="2" style="color: white">
+	    Cod.</td>';
+        print '<td align="center" width="55%">
 	    <a href="articoli_list.php?from=' . $from . '&to=' . $to .
 	    '&order=d&where=' . $where_encoded . '" style="color:white">
-	    Descrizione</font></td>';
-        print '    <td width="15%"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Prezzo</font></td>';
-        print '    <td width="5%"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Qt.</font></td>';
-        print '    <td width="15%" colspan="2"><font face="arial,helvetica,sans-serif" size="2" style="color: white">Operazioni</font></td>';
+	    Descrizione</td>';
+        print '    <td align="center" width="5%">Qt.</td>';
+        print '    <td align="center" width="15%">Prezzo</td>';
+        print '    <td align="center" width="15%" colspan="2">Operazioni</td>';
 	print '</tr>';
 		
         for ($count=$from; $count<=$to; $count++)        
@@ -142,76 +115,79 @@
                 print '<tr bgcolor="white">';
             };
 
-            // first column
-            print '<td valign="top"';
-            if ($arr['quantita'] <= 0) { 
-                print ' bgcolor="#ffc1c1"> ';
-            } else {
-                print '>';
-            }
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
+            // ************* first column
+            print '<td valign="top">';
+            //print '<font size=2>';
             print $arr['codice_art'] . '<br>';
             if ($DEBUG) { print '<i>' . $arr['oid'] . '</i>'; }
-            print '    </font>';
+            //print '</font>';
             print '</td>';
 
-            // second column
-            print '<td valign="top"';
-            if ($arr['quantita'] <= 0) { 
-                print ' bgcolor="#ffc1c1"> ';
-            } else {
-                print '>';
-            }
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
-            print '    <i>' . $arr['descrizione'] . '</i>';
-            if ($arr['descrizione2'] != "") { print ',&nbsp;' . $arr['descrizione2']; }
-
-            print '    </font>';
-            print '</td>';
-
-	    // third column
-            print '<td valign="top"';
-            if ($arr['quantita'] <= 0) { 
-                print ' bgcolor="#ffc1c1"> ';
-            } else {
-                print '>';
-            };
-	    
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
-            print $arr['prezzo_ven1'] . '<br>';
-            print '    </font>';
-            print '</td>';
-	    
-	    // 4th column
-            print '<td valign="top"';
-            if ($arr['quantita'] <= 0) { 
-                print ' bgcolor="#ffc1c1"> ';
-            } else {
-                print '>';
-            };
-	    
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
-            print $arr['quantita'] . '<br>';
-            print '    </font>';
-            print '</td>';
-
-	    // 5th column
+            // ************* second column
             print '<td valign="top">';
-            print '    <a href="articolo_info.php?oid=' . $arr['oid'] . '"><img src="../icone/ico_info.gif" width="17" height="15" border="0" alt="Visualizza i dettagli"></a>';
+            //print '<font size=2>';
+            print '<a href="#" target="contents" onclick="javascript:window.open(\'./secure/articolo_info.php?oid=' . $arr['oid'] . '\',\'ne\',\'scrollbars=1,location=0,menubar=0,toolbar=0,resizable=1,width=700,height=300\')">';
+            print ' <i>' . $arr['descrizione'] . '</i>';
+            if ($arr['descrizione2'] != "") { print ',&nbsp;' . $arr['descrizione2']; }
+            print '</a>';
+            //print '</font>';
+            print '</td>';
+
+	    // ************* third column
+            print '<td align="right" valign="top"';
+            if ($arr['quantita'] <= 0) { 
+                print ' bgcolor="#ff0000"> ';
+            } else {
+                print '>';
+            };
+            //print '<font size=2>';
+	    
+            print $arr['quantita'] . '<br>';
+            //print '</font>';
             print '</td>';
 	    
-	    // 6th column
-            print '<td valign="top" bgcolor="#ffc1c1">';
-            print '    <a href="secure/articolo_drop.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_draw.gif" width="14" height="15" border="0" alt="Scarica art. da magazzino"></a>';
-            print '    <a href="secure/articolo_load.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_deposit.gif" width="14" height="15" border="0" alt="Carica art. a magazzino"></a>';
-            print '    <a href="secure/articolo_history.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_history.gif" width="14" height="15" border="0" alt="Visualizza i movimenti"></a>';
-            print '    <a href="secure/articolo_modify.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_edit.gif" width="20" height="15" border="0" alt="Modifica"></a>';
-            print '    <a href="secure/articolo_delete.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_delete.gif" width="17" height="15" border="0" alt="Cancella"></a>';
+	    // ************* 4th column
+            print '<td align="right" valign="top"';
+            if ($arr['quantita'] <= 0) { 
+                print ' bgcolor="#ff0000"> ';
+            } else {
+                print '>';
+            };
+	    
+            //print '<font size=2>';
+            print $arr['prezzo_ven1'] . '<br>';
+            //print '</font>';
             print '</td>';
+
+	    // ************* 5th column
+            print '<td valign="top">';
+            //print '<font size=2>';
+            print '    <a href="secure/articolo_drop.php?codice_art=' . $arr['codice_art'] . '"> U</a>';
+            print '    <a href="secure/articolo_load.php?codice_art=' . $arr['codice_art'] . '"> L</a>';
+
+            print '<a href="#" target="contents" onclick="javascript:window.open(\'secure/articolo_history.php?codice_art=' . $arr['codice_art'] . '\',\'ne\',\'scrollbars=1,location=0,menubar=0,toolbar=0,resizable=1,width=700,height=300\')">';
+//            print '    <a href="secure/articolo_history.php?codice_art=' . $arr['codice_art'] . '">';
+	    print ' H</a>';
+
+            print '    <a href="secure/articolo_modify.php?codice_art=' . $arr['codice_art'] . '"> M</a>';
+
+            print '<a href="#" target="contents" onclick="javascript:window.open(\'secure/articolo_delete.php?codice_art=' . $arr['codice_art'] . '\',\'ne\',\'scrollbars=1,location=0,menubar=0,toolbar=0,resizable=1,width=700,height=300\')">';
+//            print '    <a href="secure/articolo_delete.php?codice_art=' . $arr['codice_art'] . '"> D</a>';
+	    print ' D</a>';
+
+            //print '</font>';
+            print '</td>';
+
+//            print '<td valign="top">';
+//            print '    <a href="secure/articolo_drop.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_draw.gif" width="14" height="15" border="0" alt="Scarica art. da magazzino"></a>';
+//            print '    <a href="secure/articolo_load.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_deposit.gif" width="14" height="15" border="0" alt="Carica art. a magazzino"></a>';
+//            print '    <a href="secure/articolo_history.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_history.gif" width="14" height="15" border="0" alt="Visualizza i movimenti"></a>';
+//            print '    <a href="secure/articolo_modify.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_edit.gif" width="20" height="15" border="0" alt="Modifica"></a>';
+//            print '    <a href="secure/articolo_delete.php?codice_art=' . $arr['codice_art'] . '"><img src="../icone/ico_delete.gif" width="17" height="15" border="0" alt="Cancella"></a>';
+//            print '</td>';
 
             print '</tr>';
         };
-
         print '</table>';
     };
     // chiudo la connessione

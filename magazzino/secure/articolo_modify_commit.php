@@ -40,7 +40,7 @@ if ($DEBUG)
     print '    <font face="arial,helvetica,sans-serif" size="2">';
    
     $errori=0;
-    if ($codice_art == '' || $descrizione == '' || $quantita == '')
+    if ($descrizione == '' || $quantita == '')
      {
      print '<b>Attenzione:</b> 
      Dovete compilare almeno i campi codice, descrizione, quantita.<br>';
@@ -77,7 +77,6 @@ if ($DEBUG)
     // leggo gli articoli
     
     $query="UPDATE magazzino SET
-	    codice_art='" . $codice_art . "',
 	    descrizione='" . $descrizione . "',
 	    descrizione2='" . $descrizione2 . "',
 	    quantita=" . $quantita . ",

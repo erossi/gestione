@@ -1,19 +1,17 @@
-<? if (file_exists('../default.php')) { include '../default.php'; } ?>
-<? if (file_exists('../procedure/utility.php')) { include '../procedure/utility.php'; } ?>
+<? if (file_exists('../../default.php')) { include '../../default.php'; } ?>
+<? if (file_exists('../../procedure/utility.php')) { include '../../procedure/utility.php'; } ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
     <title><? print $prog_name ?> - Magazzino</title>
-    <link rel="stylesheet" href="../stylesheet.css">
+    <link rel="stylesheet" href="../../stylesheet.css">
 </head>
 <body text="black" bgcolor="white" link="#cc9966" alink="#cc9966" vlink="#cc9966">
 
 <font face="arial,helvetica,sans-serif" size="2">
 
-<? print_top($prog_name); ?>
-<? print_navigation('Articolo info','Home Page','../contents.php','Magazzino','magazzino_index.php'); ?>
-<? print_title('Articolo Info'); ?>
+<? print_title('Informazioni Articolo'); ?>
 
 <?
     // connessione al database
@@ -79,7 +77,7 @@
     print '        <input type="submit" value="Visualizza lo storico dell'articolo">';
     print '    </form>';
 */    
-    print '    <a href="javascript:history.back(1)">Torna</a> alla schermata precedente.';
+    print '    <a href="javascript:self.close()">Chiudi</a>';
     print '    </font>';
     print '    </td>';
 

@@ -11,8 +11,6 @@
 
 <font face="arial,helvetica,sans-serif" size="2">
 
-<? print_top($prog_name); ?>
-<? print_navigation('History articolo','Magazzino','../magazzino_index.php','Home Page','../contents.php'); ?>
 <? print_title('Storico art. ' . $codice_art); ?>
 
 <?
@@ -35,9 +33,10 @@
 
     if ($num_rows=='0') {
         print '<ul>';
-        print '    <li>Num. di movimenti trovati .';
+        print 'Num. di movimenti trovati 0 ERRORE!!!!';
         print '</ul>';
     } else {
+
         // stampo l'indice
         print '<div align="center">';
         print '<table cellspacing="1" cellpadding="3" border="0" width="90%">';
@@ -108,64 +107,25 @@
             };
 
             // first column
-            print '<td valign="top"';
-/*
-            if ($arr['quantita'] <= 0) { 
-                print ' bgcolor="#ffc1c1"> ';
-            } else {
-*/
-                print '>';
-//            }
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
+            print '<td valign="top">';
             print $arr['data_movimento'] . '<br>';
             if ($DEBUG) { print '<i>' . $arr['oid'] . '</i>'; }
-            print '    </font>';
             print '</td>';
 
             // second column
-            print '<td valign="top"';
-/*
-            if ($arr['quantita'] <= 0) { 
-                print ' background="../icone/back_drown.gif">';
-            } else {
-*/
-                print '>';
-//            }
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
+            print '<td valign="top">';
             print '    <i>' . $arr['tipo_movimento'] . '</i>';
             if ($arr['descrizione'] != "") { print ',&nbsp;' . $arr['descrizione']; }
-
-            print '    </font>';
             print '</td>';
 
 	    // third column
-            print '<td valign="top"';
-/*
-            if ($arr['quantita'] <= 0) { 
-                print ' bgcolor="#ffc1c1"> ';
-            } else {
-*/
-                print '>';
-//            };
-	    
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
+            print '<td valign="top">';
             print $arr['prezzo'] . '<br>';
-            print '    </font>';
             print '</td>';
 	    
 	    // 4th column
-            print '<td valign="top"';
-/*
-            if ($arr['quantita'] <= 0) { 
-                print ' bgcolor="#ffc1c1"> ';
-            } else {
-*/
-                print '>';
-//            };
-	    
-            print '    <font face="arial,helvetica,sans-serif" size="2">';
+            print '<td valign="top">';
             print $arr['quantita'] . '<br>';
-            print '    </font>';
             print '</td>';
 
 	    // 5th column
