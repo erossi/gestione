@@ -1,8 +1,12 @@
 <?php
-    // File: utility
-    // contiene una serie di funzioni di utilità generale
+// ----------------------------------------------------------------------------------
+// File: utility
+// contiene una serie di funzioni di utilità generale
+// ----------------------------------------------------------------------------------
 
-    // stampa un messaggiop di errore
+// ----------------------------------------------------------------------------------
+// stampa un messaggiop di errore
+// ----------------------------------------------------------------------------------
     function print_error($message) {
         print '<br>';
         print '<div align="center">';
@@ -19,7 +23,9 @@
         return;
     }
     
-    // stampa la navigation bar delle pagine
+// ----------------------------------------------------------------------------------
+// stampa la navigation bar delle pagine
+// ----------------------------------------------------------------------------------
     function print_navigation($title,$first='',$first_link='',$second='',$second_link='',$third='',$third_link='') {
         print '<div align="center">';
         print '<table width="90%" cellspacing="1" cellpadding="3" border="0">';
@@ -43,7 +49,9 @@
         return;
     };
     
-    // stampa il titolo
+// ----------------------------------------------------------------------------------
+// stampa il titolo
+// ----------------------------------------------------------------------------------
     function print_title($title) {
         print '<table align="center" width="90%" cellspacing="1" cellpadding="3" border="0">';
         print '<tr>';
@@ -56,7 +64,9 @@
         print '</table>';
     };
     
-    // stampa il titolo
+// ----------------------------------------------------------------------------------
+// stampa il titolo
+// ----------------------------------------------------------------------------------
     function print_top($title) {
         print '<table align="center" width="90%" cellspacing="1" cellpadding="3" border="0">';
         print '<tr>';
@@ -69,7 +79,9 @@
         print '</table>';
     };
     
-    // connessione al database
+// ----------------------------------------------------------------------------------
+// connessione al database
+// ----------------------------------------------------------------------------------
     function db_connect($host='',$port='',$name='',$user='') {
         $connection_string = '';
         if ($host != '') { $connection_string = 'host=' . $host; }
@@ -85,20 +97,27 @@
         return $connection;
     }
 
-    //esegue una query
-    function db_execute($connection,$query_string) {
-        $query_result = pg_exec ($connection,$query_string);
-        if (!$query_result) {
-            print_error('File db_execute error: cannot execute query.<br>' .
-                       'Query string is: <b>' . $query_string . '</b><br>'); 
-            exit;
-        }
-        return $query_result;
-    }
+// ----------------------------------------------------------------------------------
+// Esegue una query al db
+// ----------------------------------------------------------------------------------
+function db_execute($connection,$query_string)
+ {
+ $query_result = pg_exec ($connection,$query_string);
+ if (!$query_result)
+  {
+  print_error('File db_execute error: cannot execute query.<br>' .
+  'Query string is: <b>' . $query_string . '</b><br>'); 
+  exit;
+  }
+ return $query_result;
+ }
 
-    // connessione al database
-    function db_close($conn) {
-        pg_close ($conn);
-        return;
-    }
+// ----------------------------------------------------------------------------------
+// DISconnessione al database
+// ----------------------------------------------------------------------------------
+function db_close($conn)
+ {
+ pg_close ($conn);
+ return;
+ }
 ?>

@@ -1,16 +1,16 @@
 <?php
     // inforazioni riguardanti la gestione web
-    $prog_name = "Contabilita'";
-    $prog_version = "0.3";
+    $prog_name = "Gestione";
+    $prog_version = "0.4";
     
     // debug
 //    $DEBUG = true;
     $DEBUG = false;
     
-    // variabili usate per la connessione al database della lamda
+    // variabili usate per la connessione al database
     $db_host = "localhost";
     $db_port = "5432";
-    $db_name = "contabilita";
+    $db_name = "gestione04";
     $db_user = "www-data";
     
     // numero massimo di righe per ogni tabella stampata
@@ -28,5 +28,8 @@
 // Colori
     $color_list_even="#e0e0e0";
     $color_list_odd="white";
+
+// il comando per generare la password
+    $password_generator_command = "/usr/bin/pwgen 8";
     
 ?>

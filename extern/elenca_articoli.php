@@ -1,7 +1,11 @@
-<? if (file_exists('../default.php')) { include '../default.php'; } ?>
-<? if (file_exists('../procedure/utility.php')) { include '../procedure/utility.php'; } ?>
-<? if (file_exists('../procedure/function_lista_articolo_link.php'))
- { include '../procedure/function_lista_articolo_link.php'; } ?>
+<? if (file_exists('../procedure/auth.php'))
+ { include '../procedure/auth.php'; } ?>
+<? if (file_exists('../default.php'))
+ { include '../default.php'; } ?>
+<? if (file_exists('../procedure/utility.php'))
+ { include '../procedure/utility.php'; } ?>
+<? if (file_exists('../procedure/function_lista_articolo_switch.php'))
+ { include '../procedure/function_lista_articolo_switch.php'; } ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
@@ -11,10 +15,10 @@
 </head>
 <body>
 
-<?php
+<? print_title('Articoli in Magazzino'); ?>
 
-$title="Articoli in Magazzino";
-print_title($title);
+<?
+//$DEBUG=1;
 
 // connessione al database
 $conn=db_connect($db_host,$db_port,$db_name,$db_user);    
@@ -25,18 +29,31 @@ $result = db_execute($conn,$query);
     
 // conto il numero di linee trovate (count ritorna sempre qualcosa).
 $arr=pg_fetch_array ($result,0);
-$num_rows=$arr[0];
-if ($DEBUG) { print 'Total lines found: ' . $num_rows . '<br>'; };
+$numero_articoli=$arr[0];
 
-print '&nbsp;<img src="../icone/freccia.png" width="15" height="15" border="0" vspace="2"
-align="absmiddle">Articoli nel listino: ' . $num_rows .'<br>';
+if ($DEBUG) { print 'DEBUG articoli: ' . $numero_articoli . '<br>'; };
+
+// leggo il listino da usare
+$query="select listino from clienti where codice='" . $gestione04_pw . "'";
+$result = db_execute($conn,$query);
+$arr = pg_fetch_array ($result,0);
+$listino = $arr[0];
+
+if ($DEBUG)
+ {
+ print '<br>DEBUG query: ' . $query . '<br>';
+ print '<BR>DEBUG listino: ' . $listino . '<br>';
+ };
+
+print '&nbsp;<img src="../icone/freccia.png" width="15" height="15"';
+print ' border="0" vspace="2"';
+print ' align="absmiddle">Articoli nel listino: ' . $numero_articoli .'<br>';
 
 // se non ci sono articoli esci!!
-if ($num_rows == 0)
+if ($numero_articoli == 0)
  {
  print '&nbsp;<img src="../icone/freccia.png" width="15" height="15" border="0" vspace=
- "2" align="absmiddle"> non ci sono articoli in listino<br>';
- db_close($conn);
+"2" align="absmiddle"> non ci sono articoli in listino<br>';
  exit;
  }
 
@@ -50,11 +67,13 @@ $result_categorie = db_execute($conn, $query);
 
 // leggo il risultato e il numero di righe
 $numero_righe=pg_numrows($result_categorie);
+
 // controllo se c'e` almeno una categoria
 if ($numero_righe == 0)
  {
- print '&nbsp;<img src="../icone/freccia.png" width="15" height="15"
- border="0" vspace="2" align="absmiddle"> Non ci sono categorie.<br>';
+ print '&nbsp;<img src="../icone/freccia.png" width="15"';
+ print ' height="15" border="0" vspace="2" align="absmiddle">';
+ print ' Non ci sono categorie.<br>';
  }
 else
  {
@@ -69,10 +88,10 @@ else
   $result = db_execute ($conn, $query);
   $title = $categoria['codice_cat'] . ' - ' . $categoria['descrizione'];
 
-  lista_articolo_link($result,$title,1);
+  lista_articolo($result,$title,$listino);
 
-  } // fine loop articoli per categoria
- } // fine loop categorie
+ } // fine loop articoli per categoria
+} // fine loop categorie
 
 
 // -------------------------------------------------
@@ -80,16 +99,18 @@ else
 // -------------------------------------------------
 
 // ricerco gli orfani
-$query="SELECT * FROM articoli WHERE codice_cat NOT IN (SELECT codice_cat FROM categorie)
-OR codice_cat=NULL";
+$query="SELECT * FROM articoli WHERE codice_cat NOT IN 
+(SELECT codice_cat FROM categorie) OR codice_cat=NULL";
 
 // eseguo la query
 $result = db_execute ($conn, $query);
 
-lista_articolo_link($result,"Articoli non presenti in nessuna categoria",1);
+$title="Articoli non presenti in nessuna categoria";
+lista_articolo($result,$title,$listino);
 
 // chiudo la connessione
 db_close($conn);
+
 ?>
 </div>
 </body>
