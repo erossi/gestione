@@ -1,52 +1,57 @@
-H1 {}
-H2  {
-	font-family : arial,helvetica,sans-serif;
-	font-size : medium;
-	color : black;
-}
-H3  {
-	font-family : arial,helvetica,sans-serif;
-	font-size : small;
-	color : black;
-}
-
-tr
+BODY
  {
+ font-family : arial,helvetica,sans-serif;
+ font-size : small;
+ color : black;
+ }
+
+H1 {}
+
+H2
+ {
+ font-family : arial,helvetica,sans-serif;
+ font-size : medium;
+ color : black;
+ }
+ 
+H3
+ {
+ font-family : arial,helvetica,sans-serif;
+ font-size : small;
+ color : black;
+ }
+
+tr, td
+ {
+ font-family : arial,helvetica,sans-serif;
  font-size : small;
  }
 
 form
  {
+ font-family : arial,helvetica,sans-serif;
  font_size : small;
  }
 
-A  {
- color : green;
- font-size : small;
- text-decoration: none;
-}
-A:Visited  {
- color : green;
- font-size : small;
- text-decoration: none;
-}
-A:Active  {
- color : #CC9966;
- text-decoration: none;
-}
-A:Hover  {
- color : #CC9966;
- text-decoration: underline;
-}
-
-BODY
+A, A:Visited
  {
+ color : #00ff00;
+ font-family : arial,helvetica,sans-serif;
  font-size : small;
- color : black;
+ text-decoration: none;
  }
- 
+
+A:Active, A:Hover
+ {
+ color : orange;
+ font-family : arial,helvetica,sans-serif;
+ font-size : small;
+ text-decoration: none;
+ }
+
 P
  {
+ font-family : arial,helvetica,sans-serif;
  font-size : small;
  color : black;
  }

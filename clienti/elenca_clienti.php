@@ -1,7 +1,11 @@
-<? if (file_exists('../default.php')) { include '../default.php'; } ?>
-<? if (file_exists('../procedure/utility.php')) { include '../procedure/utility.php'; } ?>
-<? if (file_exists('../procedure/function_lista_clienti_switch.php'))
- { include '../procedure/function_lista_clienti_switch.php'; } ?>
+<?php
+ if (file_exists("../default.php"))
+  { include "../default.php"; }
+ if (file_exists("$default_dir_function/utility.php"))
+  { include "$default_dir_function/utility.php"; }
+ if (file_exists("$default_dir_function/f_lista_clienti.php"))
+  { include "$default_dir_function/f_lista_clienti.php"; }
+?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
@@ -12,6 +16,9 @@
 <body>
 
 <?php
+//necessaria per la chiamata alla lista_clienti
+$page_link="modifica_cliente.php";
+
 $title="Elenco Clienti";
 
 print_title($title);
@@ -33,7 +40,7 @@ print 'Clienti trovati: ' . $num_rows .'<br>';
 
 if ($num_rows > 0)
  {
- lista_clienti($result,$title);
+ lista_clienti($result,$title,$page_link);
  }
 
 // chiudo la connessione

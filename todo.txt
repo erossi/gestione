@@ -1,1 +1,3 @@
+10.01.04 Scrivere la rel. del dbase in uso nella main
+
 - saltare nella lista articoli direttamente al tag voluto

@@ -1,14 +1,15 @@
-<? 
+<?php
 // ----------------------------------------------------------------------------------
-// lista_clienti_switch
+// lista_clienti
 // $result e' il puntatore al dbase aperto
 // $title e' il titolo della prima barra in alto
+// $page_link e' la pagina da chiamare quando si clicca.
 // ----------------------------------------------------------------------------------
-function lista_clienti($result,$title)
+function lista_clienti($result,$title,$page_link)
  {
 // pagina da chiamare quando si clicca.
 // magari da esportare nel prog. chiamante
-$page_link="modifica_cliente.php";
+// $page_link="modifica_cliente.php";
 
 // quanti articoli abbiamo?
 $numero_elementi=pg_numrows($result);
@@ -95,9 +96,19 @@ if ($numero_elementi >= 1)
   print '</td>';
 
   print '<td width="' . $size2 . '">';
-  $link = $page_link . "?codice=" . $elemento['codice'];
-  print "<a href=\"$link\">";
-  print '&nbsp;' . $elemento["ragsoc"] . '</a>';
+  
+  if ($page_link)
+   {
+   $link = $page_link . "?codice=" . $elemento['codice'];
+   print "<a href=\"$link\">";
+   print '&nbsp;' . $elemento["ragsoc"];
+   print '</a>';
+   }
+  else
+   {
+   print '&nbsp;' . $elemento["ragsoc"];
+   };
+  
   print '</td>';
 
   print '<td width="' . $size3 . '">';

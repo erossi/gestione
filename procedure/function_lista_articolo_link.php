@@ -12,58 +12,47 @@ function lista_articolo_link($result,$title)
 $numero_articoli=pg_numrows($result);
 
 // definizioni larghezza tabelle
-$size1=60;
-$size2=150;
+$size1=70;
+$size2=200;
 $size3=150;
 $size4=30;
-$size5=60;
-$size6=60;
-$size7=60;
-$size8=60;
-$size9=60;
-$total_size=690;
+$size5=50;
+$size6=50;
+$size7=50;
+$size8=50;
+$size9=50;
+$total_size=700;
 $bg_titolo="#0000f0";
 
 // stampo il risultato
 if ($numero_articoli >= 1) {
  // stampo il risultato (adesso so che almeno un articolo c'e`).
- print '<table cellspacing="0" cellpadding="0" border="0">';
 
 // *** Prima righa di bordo ***
- print '<tr>';
- 
- print '<td align="center" valign="middle" colspan="9">';
- print '<img src="../icone/table_top.png" width="';
- print $total_size . '" height="20" border="0"></td>';
- 
- print '<td align="left" valign="bottom" width="20">';
- print '<img src="../icone/table_upright.png"';
- print 'width="20" height="20" border="0"></td>';
- print '</tr>';
+ print "<br>";
 
 // *** seconda righa con il titolo ***
+ print '<table cellspacing="0" cellpadding="0" border="1" width="100%">';
  print '<tr bgcolor="' . $bg_titolo . '">';
- 
- print '<td align="center" valign="middle" colspan="9">';
+ print '<td align="center" valign="middle">';
  print '<font style="color: white">';
  print $title . '</td>';
  print '</font>';
- 
- print '<td align="right" valign="bottom" width="20"
-  background="../icone/table_right.png">&nbsp;</td>';
- print '</tr>';                
+ print '</tr></table>';                
 
 // *** terza riga con le testate della tabella ***
+ print '<table cellspacing="0" cellpadding="0" border="0" width="100%">';
  print '<tr bgcolor="green">';
  print '<td width="' . $size1 . '">';
  print '&nbsp;Codice';
  print '</td>';
  
- print '<td width="' . $size2 . '">';
+// print '<td width="' . $size2 . '">';
+ print "<td>";
  print '&nbsp;Articolo';
-  print '</td>';
+ print '</td>';
 
-print '<td width="' . $size3 . '">';
+ print '<td width="' . $size3 . '">';
  print '&nbsp;';
  print '</td>';
  
@@ -91,9 +80,6 @@ print '<td width="' . $size3 . '">';
  print '&euro 4';
  print '</td>';
  
- print '<td align="right" valign="bottom" width="20"
- background="../icone/table_right.png">&nbsp;</td>';
- 
  print '</tr>';
 
 // *** Inizio la stampa della tabella ***    
@@ -106,7 +92,8 @@ print '<td width="' . $size3 . '">';
   print '<td width="' . $size1 . '">' . $articolo["codice_art"];
   print '</td>';
 
-  print '<td width="' . $size2 . '">';
+//  print '<td width="' . $size2 . '">';
+  print "<td>";
   print '<a href="secure/menu_articolo.php?codice_cat=' . $articolo['codice_cat']
    . '&codice_art=' . $articolo['codice_art'] . '">';
   print '&nbsp;' . $articolo["descrizione"] . '</a>';
@@ -148,65 +135,30 @@ print '<td width="' . $size3 . '">';
   print '&nbsp;' . $articolo["prezzo_ven4"];
   print '</td>';
   
-  print '<td align="right" valign="bottom" width="20"
-   background="../icone/table_right.png">&nbsp;</td>';
+//  print '<td align="right" valign="bottom" width="20"
+//   background="../icone/table_right.png">&nbsp;</td>';
   print '</tr>';
   }
 
-// *** stampo il bottom della tabella ***
- print '<tr>';
- 
- print '<td align="center" valign="middle" colspan="9">';
- print '<img src="../icone/table_bottom.png" width="';
- print $total_size . '" height="20" border="0"></td>';
- 
- print '<td align="right" valign="top" width="20">
- <img src="../icone/table_botright.png" width="20" height="20" border="0"></td>';
- 
- print '</tr>';
  print '</table>';
+ print "<br>";
  }
 // ********** else
  else
  {
- print '<table cellspacing="0" cellpadding="0" border="0">';
-
-// Prima riga
+ print "<br>";
+ print '<table cellspacing="0" cellpadding="0" border="1" width="100%">';
+ print '<tr bgcolor="#000080">';
+ print '<td align="center" valign="middle"';
+ print '<font style="color:white">'; 
+ print $title;
+ print '</font>';
+ print '</td>';
+ print "</tr>";
  print '<tr>';
- print '<td align="right" valign="bottom" width="';
- print $total_size . '"><img src="../icone/table_top.png" width="';
- print $total_size . '" height="20" border="0"></td>';
-
- print '<td align="left" valign="bottom" width="20">
- <img src="../icone/table_upright.png" width="20" height="20" border="0"></td>';
-  print '</tr>';
- 
-// Seconda riga
- print '<tr bgcolor="' . $bg_titolo . '">';
- print '<td align="center" valign="middle" width="';
- print $total_size . '">';
- print $title . '</td>';
-
- print '<td align="right" valign="bottom" width="20"
- background="../icone/table_right.png">&nbsp;</td>';
- print '</tr>';                
-
- print '<tr>';
- print '<td background="../icone/table_back.png">';
+ print '<td>';
  print '&nbsp;Non ci sono articoli';
  print '</td>';
-
- print '<td align="right" valign="bottom" width="20"
- background="../icone/table_right.png">&nbsp;</td>';
- print '</tr>';
- 
- print '<tr>';
- print '<td align="right" valign="top" width="';
- print $total_size . '"><img src="../icone/table_bottom.png" width="';
- print $total_size . '" height="20" border="0"></td>';
-
- print '<td align="right" valign="top" width="20">
- <img src="../icone/table_botright.png" width="20" height="20" border="0"></td>';
  print '</tr>';
  print '</table>';
  }

@@ -9,13 +9,11 @@
 <HEAD>
     <TITLE><? print $nome_programma ?></TITLE>
 </HEAD>
-<BODY BGCOLOR="White" TEXT="Black" LINK="Orange" ALINK="Orange" VLINK="Orange">
+<BODY>
 
 <FONT FACE="ARIAL" SIZE="2">
 <DIV ALIGN="LEFT">
 <BR>
-&nbsp;<IMG SRC="../icons/logo-lamda.png" WIDTH="87" HEIGHT="35"
- BORDER="0" ALIGN="ABSMIDDLE" ALT="Lamda Informatica">
  &nbsp;:&nbsp;Spedizione Listini via Email
 <BR>
 <BR>
@@ -31,7 +29,7 @@ una volta attivata la procedura NON pu&ograve essere interrotta.
 <UL>
     <LI><A HREF="index.php">Annulla</A>
     <BR><BR>
-    <LI><A HREF="clienti_email_send.php">Spedisci</A>
+    <LI><A HREF="email_listino_send.php">Spedisci</A>
 </UL>
 
 </BODY>

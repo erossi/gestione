@@ -14,7 +14,7 @@
 <body>
 
 <?php
-print_title('Modifica cliente');
+print_title('Abilita cliente');
 
 // connessione al database
 $conn=db_connect($db_host,$db_port,$db_name,$db_user);
@@ -37,7 +37,7 @@ pg_close($conn);
 
 print '<br>';
 
-print '<FORM ACTION="modifica_cliente_commit.php" METHOD="POST">';
+print '<FORM ACTION="abilita_cliente_commit.php" METHOD="POST">';
 print '<TABLE WIDTH="90%" CELLPADDING="1" CELLSPACING="3" BORDER="0">';
 print '<input type="hidden" name="codice" value="';
 print $codice . '"></input>';
@@ -73,9 +73,13 @@ print ' <option value="4">4</option>';
 print '</select>';
 print 'Accesso Web:';
 print '<select name="status" size="1">';
-print ' <option selected value="' . $arr["status"] . '">';
 
-switch ($arr["status"])
+// prima era $arr["status"];
+$status="a";
+
+print "<option selected value=\"$status\">";
+
+switch ($status)
  {
  case "r":print 'attesa'; break;
  case "a":print 'attivo'; break;
@@ -168,8 +172,8 @@ print '</TD></TR>';
 
 print '<TR><TD ALIGN="center">';
 
-print '&nbsp;<INPUT TYPE="SUBMIT" VALUE="Conferma Modifiche"></INPUT>';
-print '&nbsp;<INPUT TYPE="RESET" VALUE="Annulla"></INPUT>';
+print '&nbsp;<INPUT TYPE="SUBMIT" VALUE="Abilita"></INPUT>';
+print '&nbsp;<INPUT TYPE="RESET" VALUE="Annulla Modifiche"></INPUT>';
 print '</TD></TR>';
 print '</TABLE>';
 print '</FORM>	';

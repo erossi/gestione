@@ -17,7 +17,7 @@
 
 <?php
 // serve per la lista_clienti
-$page_link="modifica_cliente.php";
+$page_link="abilita_cliente.php";
 
 $title="Elenco Clienti in attesa di abilitazione";
 
